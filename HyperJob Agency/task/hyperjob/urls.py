@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from main.views import MenuView, MyLoginView, SignupView
+from django.views.generic import RedirectView
+from main.views import MenuView, MyLoginView, SignupView, NewResumeView, NewVacancyView, HomeView
 from resume.views import ResumesView
 from vacancy.views import VacanciesView
 
@@ -24,6 +25,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login', MyLoginView.as_view()),
     path('signup', SignupView.as_view()),
+    path('home', RedirectView.as_view(url='home/')),
+    path('home/', HomeView.as_view()),
+    path('resume/new', NewResumeView.as_view()),
+    path('vacancy/new', NewVacancyView.as_view()),
     path('resumes/', ResumesView.as_view()),
     path('vacancies/', VacanciesView.as_view()),
     path('', MenuView.as_view()),
